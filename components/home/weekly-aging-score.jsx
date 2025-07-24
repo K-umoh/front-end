@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     width: "92%",
     marginTop: 10,
     backgroundColor: "#e3ede2",
-    padding: 24,
+    padding: 18,
     borderRadius: 16,
     alignItems: "center",
     borderBottomWidth: 1,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: 8,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
     color: "#333",
   },
