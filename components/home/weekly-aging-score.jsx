@@ -20,6 +20,7 @@ export default function WeeklyAgingScore({ score = 50 }) {
   const circumference = 2 * Math.PI * radius;
 
   const [msg, setMsg] = useState("");
+  const [footerMsg, setFooterMsg] = useState("");
 
   // ✅ 애니메이션 값
   const animatedProgress = useSharedValue(0);
@@ -35,12 +36,16 @@ export default function WeeklyAgingScore({ score = 50 }) {
   useEffect(() => {
     if (score >= 80) {
       setMsg("매우 좋음");
+      setFooterMsg("지금처럼만 유지하세요!");
     } else if (score >= 60) {
       setMsg("보통");
+      setFooterMsg("약간의 개선이 필요해요.");
     } else if (score >= 40) {
       setMsg("주의 필요");
+      setFooterMsg("식습관 개선이 필요해요!");
     } else {
       setMsg("위험");
+      setFooterMsg("지금 당장 바꾸는 게 좋아요!");
     }
 
     // ✅ 애니메이션 트리거
@@ -86,7 +91,7 @@ export default function WeeklyAgingScore({ score = 50 }) {
         </View>
       </View>
 
-      <Text style={styles.footer}>개선된 식습관으로 활력을 되찾으세요.</Text>
+      <Text style={styles.footer}>{footerMsg}</Text>
     </View>
   );
 }
