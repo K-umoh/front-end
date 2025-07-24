@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
+
 import Animated, {
   useSharedValue,
   useAnimatedProps,
@@ -25,7 +28,7 @@ export default function WeeklyAgingScore({ score = 50 }) {
   // ✅ 애니메이션 값
   const animatedProgress = useSharedValue(0);
 
-  // ✅ SVG의 strokeDashoffset에 애니메이션 적용
+  // 1. 애니메이션 적용 (이건 그대로)
   const animatedProps = useAnimatedProps(() => {
     return {
       strokeDashoffset:
@@ -47,10 +50,15 @@ export default function WeeklyAgingScore({ score = 50 }) {
       setMsg("위험");
       setFooterMsg("지금 당장 바꾸는 게 좋아요!");
     }
-
-    // ✅ 애니메이션 트리거
-    animatedProgress.value = withTiming(score, { duration: 1000 });
   }, [score]);
+
+  // 3. 포커스될 때 애니메이션 트리거 (useFocusEffect는 useEffect 밖에서 사용)
+  useFocusEffect(
+    useCallback(() => {
+      animatedProgress.value = 0;
+      animatedProgress.value = withTiming(score, { duration: 1000 });
+    }, [score])
+  );
 
   return (
     <View style={styles.container}>

@@ -5,7 +5,7 @@ export default function CustomHeader() {
   return (
     <View style={styles.container}>
       <Ionicons name="menu" size={24} color="green" />
-      <Text style={styles.title}>홈</Text>
+      <Text style={styles.title}>오래살장</Text>
       <View style={styles.right}>
         <View style={styles.circle}>
           <Text style={styles.circleText}>김</Text>
