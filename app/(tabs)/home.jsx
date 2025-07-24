@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
+import WeeklyAgingScore from "../../components/home/weekly-aging-score";
 
 export default function HomePage() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>홈 페이지</Text>
+      <WeeklyAgingScore />
     </View>
   );
 }
@@ -11,7 +12,6 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
   },

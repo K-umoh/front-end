@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ededec",
   },
   title: {
     fontSize: 16,
