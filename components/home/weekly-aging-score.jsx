@@ -10,7 +10,6 @@ import Animated, {
   useAnimatedProps,
   withTiming,
 } from "react-native-reanimated";
-import { interpolate } from "react-native-reanimated";
 
 // ✅ Animated SVG Circle 생성
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -37,6 +36,7 @@ export default function WeeklyAgingScore({ score = 50 }) {
   });
 
   useEffect(() => {
+    //TODO: 주 초기화 시 처리 필요 (ex: 식단을 등록하여 점수를 확인하세요.)
     if (score >= 80) {
       setMsg("매우 좋음");
       setFooterMsg("지금처럼만 유지하세요!");

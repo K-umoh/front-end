@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import WeeklyAgingScore from "../../components/home/weekly-aging-score";
 import RiskFactorSummary from "../../components/home/risk-factor-summary";
 import TodayMealButton from "../../components/home/today-meal-button";
+import TodayMission from "../../components/home/today-mission";
 
 export default function HomePage() {
   return (
@@ -9,6 +10,7 @@ export default function HomePage() {
       <WeeklyAgingScore />
       <RiskFactorSummary />
       <TodayMealButton />
+      <TodayMission />
     </View>
   );
 }
