@@ -1,4 +1,3 @@
-// RecentPurchaseCard.jsx
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function RecentPurchaseCard({ item }) {
@@ -21,12 +20,12 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 10,
     paddingRight: 4,
   },
   image: {
-    width: 52,
-    height: 52,
+    width: 57,
+    height: 56,
     borderRadius: 6,
     marginRight: 12,
   },

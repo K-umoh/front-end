@@ -1,28 +1,32 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import WeeklyAgingScore from "../../components/home/weekly-aging-score";
 import RiskFactorSummary from "../../components/home/risk-factor-summary";
 import TodayMealButton from "../../components/home/today-meal-button";
 import TodayMission from "../../components/home/today-mission";
+import RecentPurchaseList from "../../components/home/recent-purchase-list";
 
 export default function HomePage() {
   return (
-    <View style={styles.container}>
-      <WeeklyAgingScore />
-      <RiskFactorSummary />
-      <TodayMealButton />
-      <TodayMission />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <WeeklyAgingScore />
+        <RiskFactorSummary />
+        <TodayMealButton />
+        <TodayMission />
+        <RecentPurchaseList />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "#fff",
   },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
+  container: {
+    paddingVertical: 24,
+    alignItems: "center",
+    paddingBottom: 40,
   },
 });
