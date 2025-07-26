@@ -1,22 +1,26 @@
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
+import RiskFactorSummary from "../../components/home/risk-factor-summary";
+import MealRecordCard from "../../components/analysis/meal-record-card";
+import NutritionChart from "../../components/analysis/nutrition-chart";
+import AgingTextCard from "../../components/analysis/aging-text-card";
+import GuideWrapper from "../../components/analysis/GuideWrapper";
 
 export default function AnalysisPage() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>식단 분석 페이지</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <MealRecordCard />
+      <NutritionChart />
+      <RiskFactorSummary />
+      <AgingTextCard />
+      <GuideWrapper />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    paddingVertical: 24,
     alignItems: "center",
     backgroundColor: "#fff",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
   },
 });

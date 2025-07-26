@@ -68,8 +68,8 @@ export default function TodayMission() {
           count={50}
           origin={{ x: 200, y: 0 }}
           fadeOut={true}
-          explosionSpeed={1000}
-          fallSpeed={2500}
+          explosionSpeed={800}
+          fallSpeed={2300}
           onAnimationEnd={() => setShowConfetti(false)} // 다시 초기화해서 다음날 가능
         />
       )}

@@ -107,7 +107,7 @@ export default function WeeklyAgingScore({ score = 50 }) {
 const styles = StyleSheet.create({
   container: {
     width: "92%",
-    marginTop: 10,
+    marginTop: -10,
     backgroundColor: "#e3ede2",
     padding: 18,
     borderRadius: 16,

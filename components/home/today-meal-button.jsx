@@ -17,7 +17,7 @@ export default function TodayMealButton({ onPress }) {
           color="#fff"
           style={{ marginRight: 8 }}
         />
-        <Text style={styles.text}>오늘의 추천 식단 확인</Text>
+        <Text style={styles.text}>나의 맞춤 추천 식단 확인</Text>
       </View>
     </TouchableOpacity>
   );

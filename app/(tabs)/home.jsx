@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import WeeklyAgingScore from "../../components/home/weekly-aging-score";
 import RiskFactorSummary from "../../components/home/risk-factor-summary";
 import TodayMealButton from "../../components/home/today-meal-button";
