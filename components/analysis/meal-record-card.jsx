@@ -4,6 +4,8 @@ import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import { MediaType } from "expo-image-picker";
 
+//식사 교체하기, 식사 삭제하기, 다음 식사 분석하기, 삭제햇을땐 뭔 데이터 보여줌?, 모든 컴포넌트 보통으로?
+
 export default function MealRecordCard() {
   const router = useRouter();
 

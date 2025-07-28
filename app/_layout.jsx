@@ -9,6 +9,13 @@ export default function RootLayout() {
     <>
       <Stack>
         <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
           name="(tabs)"
           options={{
             header: () => (
@@ -21,8 +28,22 @@ export default function RootLayout() {
                 <CustomHeader />
               </SafeAreaView>
             ),
+            title: "",
+            headerBackTitleVisible: false,
           }}
         />
+        <Stack.Screen
+          name="camera-result"
+          options={{
+            title: "식단 분석 결과",
+            headerBackTitleVisible: false,
+            headerTintColor: "#2E7D32", // 아이콘 색
+            headerTitleAlign: "center",
+
+            tabBarStyle: { display: "none" }, // 탭바 숨김
+          }}
+        />
+
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
