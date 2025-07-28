@@ -1,7 +1,126 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import { useRouter } from "expo-router";
+import { MediaType } from "expo-image-picker";
 
-export default function MealRecordCard({ onPress }) {
+export default function MealRecordCard() {
+  const router = useRouter();
+
+  const handleImageSelect = async () => {
+    Alert.alert("사진 선택", "식단 이미지를 선택하는 방법을 고르세요.", [
+      {
+        text: "카메라로 촬영",
+        onPress: handleCamera,
+      },
+      {
+        text: "앨범에서 선택",
+        onPress: handleLibrary,
+      },
+      {
+        text: "취소",
+        style: "cancel",
+      },
+    ]);
+  };
+
+  // 공통: 이미지 업로드 함수 (추후 백엔드 API 연결 시 사용)
+  const uploadImageToServer = async (imageUri) => {
+    const formData = new FormData();
+    const filename = imageUri.split("/").pop();
+    const fileType = filename.split(".").pop();
+
+    formData.append("image", {
+      uri: imageUri,
+      name: filename,
+      type: `image/${fileType}`,
+    });
+
+    try {
+      const res = await fetch("https://your-api-endpoint.com/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.message || "Upload failed");
+      return json; // e.g. { imageId: "abc123" }
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("이미지 업로드에 실패했습니다.");
+      return null;
+    }
+  };
+
+  const handleCamera = async () => {
+    const cameraPerm = await ImagePicker.requestCameraPermissionsAsync();
+    if (!cameraPerm.granted) {
+      alert("카메라 접근 권한이 필요합니다.");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: MediaType.IMAGE,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const imageUri = result.assets[0].uri;
+
+      //API 붙이기 전: 바로 라우터 이동
+      router.push({ pathname: "/camera-result", params: { imageUri } });
+
+      // API 붙인 후: 아래 코드 사용
+      /*
+      const response = await uploadImageToServer(imageUri);
+      if (response) {
+        router.push({
+          pathname: "/camera-result",
+          params: { imageId: response.imageId },
+        });
+      }
+      */
+    }
+  };
+
+  const handleLibrary = async () => {
+    const libPerm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!libPerm.granted) {
+      alert("앨범 접근 권한이 필요합니다.");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const imageUri = result.assets[0].uri;
+
+      // API 붙이기 전: 바로 라우터 이동
+      router.push({ pathname: "/camera-result", params: { imageUri } });
+
+      // API 붙인 후: 아래 코드 사용
+      /*
+      const response = await uploadImageToServer(imageUri);
+      if (response) {
+        router.push({
+          pathname: "/camera-result",
+          params: { imageId: response.imageId },
+        });
+      }
+      */
+    }
+  };
+
   return (
     <View style={styles.container}>
       <MaterialCommunityIcons
@@ -14,8 +133,7 @@ export default function MealRecordCard({ onPress }) {
         오늘 섭취한 식단을 기록하고 분석 결과를 확인하세요.
       </Text>
 
-      {/* TODO: 우선 아이폰으로 카메라 구현, 사진촬영시 나올 UI들 구현해야함 */}
-      <TouchableOpacity style={styles.button} onPress={onPress}>
+      <TouchableOpacity style={styles.button} onPress={handleImageSelect}>
         <Text style={styles.buttonText}>카메라로 식단 분석하기</Text>
       </TouchableOpacity>
     </View>
