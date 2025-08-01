@@ -1,9 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
+import RecommendFilter from "../../components/recommend/recommend-filter";
+import MealList from "../../components/recommend/meal-list";
 
 export default function RecommendPage() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>추천식단 페이지</Text>
+      <RecommendFilter />
+      <MealList />
     </View>
   );
 }
@@ -11,8 +14,6 @@ export default function RecommendPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#fff",
   },
   text: {
