@@ -1,17 +1,20 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import SearchBar from "../../components/market/search-bar";
+import CategoryTabs from "../../components/market/category-tabs";
+import DailyProductList from "../../components/market/daily-product-list";
 
 export default function MarketPage() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>마켓 페이지</Text>
+      <SearchBar />
+      <CategoryTabs />
+      {/* <DailyProductList /> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
   },

@@ -6,10 +6,34 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Alert,
 } from "react-native";
+import GoogleLoginButton from "../components/google-login-button";
 
 export default function LoginScreen() {
   const router = useRouter();
+
+  // ✅ 구글 로그인 성공 시 accessToken 받아 처리
+  const handleGoogleLogin = async (accessToken) => {
+    try {
+      const response = await fetch(
+        "http://39.117.181.160:8081/oauth/authenticated",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken }),
+        }
+      );
+
+      if (!response.ok) throw new Error("로그인 실패");
+
+      const data = await response.json();
+      // await AsyncStorage.setItem("jwt", data.accessToken); // 필요 시 저장
+      router.replace("/tabs"); // 로그인 후 탭 네비게이션으로 이동
+    } catch (err) {
+      Alert.alert("구글 로그인 실패", err.message);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -51,17 +75,9 @@ export default function LoginScreen() {
         <View style={styles.line} />
       </View>
 
-      {/* Social Buttons - Horizontal */}
+      {/* Social Buttons - Dummy UI */}
       <View style={styles.socialRow}>
-        <TouchableOpacity
-          style={[styles.socialBox, { backgroundColor: "#f5f5f5" }]}
-        >
-          <Image
-            source={require("../assets/images/Logo-google-icon.png")}
-            style={styles.socialIcon}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
+        <GoogleLoginButton onSuccess={handleGoogleLogin} />
 
         <TouchableOpacity
           style={[styles.socialBox, { backgroundColor: "#FFEB00" }]}
@@ -145,7 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     gap: 70,
-    marginBottom: 24,
+    marginBottom: 12,
     marginTop: 10,
   },
   socialBox: {
@@ -162,6 +178,7 @@ const styles = StyleSheet.create({
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 16,
   },
   signupText: {
     color: "#2E7D32",
