@@ -10,11 +10,17 @@ import Animated, {
   useAnimatedProps,
   withTiming,
 } from "react-native-reanimated";
+import { useAtom, useAtomValue } from "jotai";
+import { isFirstMealAtom } from "../../state/demo-atom";
 
 // ✅ Animated SVG Circle 생성
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function WeeklyAgingScore({ score = 50 }) {
+  const isFirstMeal = useAtomValue(isFirstMealAtom);
+
+  if (!isFirstMeal) score = 32;
+
   const radius = 80;
   const strokeWidth = 10;
   const size = radius * 2 + strokeWidth * 2;

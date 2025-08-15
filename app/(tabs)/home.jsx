@@ -10,7 +10,7 @@ export default function HomePage() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <WeeklyAgingScore />
-        <RiskFactorSummary />
+        <RiskFactorSummary variant="home" />
         <TodayMealButton />
         <TodayMission />
         <RecentPurchaseList />

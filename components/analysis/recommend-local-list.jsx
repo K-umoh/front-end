@@ -3,10 +3,10 @@ import RecommendLocalCard from "./recommend-local-card";
 
 export default function RecommendLocalList() {
   const items = [
-    { name: "완주 유기농 현미", highlight: true },
-    { name: "강화도 병아리콩" },
-    { name: "무주 단호박" },
-    { name: "서산 가지" },
+    { name: "완도 미역·다시마", highlight: true }, // 해조류: 식이섬유/미네랄
+    { name: "남해 마늘" }, // 알리신 풍부, 향으로 소스 사용량 절감
+    { name: "해남 밤고구마" }, // 튀김 대체 탄수화물(구이/찜)
+    { name: "제주 당근" }, // 베타카로틴·항산화
   ];
 
   return (

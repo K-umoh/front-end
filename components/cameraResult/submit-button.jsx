@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { isFirstMealAtom } from "../../state/demo-atom";
+import { useSetAtom } from "jotai";
 
 export default function SubmitButton({
   label = "제출하기",
@@ -20,7 +22,11 @@ export default function SubmitButton({
   const [internalLoading, setInternalLoading] = useState(false);
   const isLoading = isLoadingProp ?? internalLoading;
 
+  const setIsFirstMeal = useSetAtom(isFirstMealAtom);
+
   const handlePress = async () => {
+    setIsFirstMeal(false);
+
     if (onPressCustom) {
       return onPressCustom();
     }
