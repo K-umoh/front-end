@@ -10,9 +10,9 @@ import { useFocusEffect } from "@react-navigation/native";
 import RiskRow from "./RiskRow";
 
 export default function RiskFactorSummary() {
-  const ages = 80;
+  const ages = 50;
   const fat = 50;
-  const antioxidant = 10;
+  const antioxidant = 50;
 
   const animatedAges = useSharedValue(0);
   const animatedFat = useSharedValue(0);
