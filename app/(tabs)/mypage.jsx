@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   },
   scrollBody: {
     alignItems: "center",
-    paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 28,
     rowGap: 16, // RN 0.73+; 오래된 RN이면 대신 margin으로 간격 조절
