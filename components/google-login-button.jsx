@@ -7,10 +7,11 @@ import { TouchableOpacity, Image, StyleSheet } from "react-native";
 WebBrowser.maybeCompleteAuthSession();
 
 // 1️⃣ 여기서 URI를 먼저 만든다
-const redirectUri = AuthSession.makeRedirectUri({
-  native: "longlive://redirect",
-  useProxy: true,
-});
+// const redirectUri = AuthSession.makeRedirectUri({
+//   native: "longlive://redirect",
+//   useProxy: true,
+// });
+const redirectUri = "https://auth.expo.io/@aryu1217/Long-Live";
 
 console.log("✅ [디버깅] redirectUri 확인:", redirectUri);
 
@@ -19,18 +20,25 @@ export default function GoogleLoginButton({ onSuccess }) {
     expoClientId:
       "434501824287-cfeomi7bkcmhdqci4c3p17hvqs1eigmn.apps.googleusercontent.com",
     iosClientId:
-      "434501824287-iuqvqqcs5uil5fu2r4i71mp6h3qn9us4.apps.googleusercontent.com",
-    scopes: ["profile", "email"],
-    redirectUri, // 2️⃣ 미리 만든 값 사용
+      "434501824287-n2pg3ildkd77a8jt3qupd1qsugsepnfa.apps.googleusercontent.com",
+    redirectUri,
+    //////////
+    // clientId:
+    //   "434501824287-cfeomi7bkcmhdqci4c3p17hvqs1eigmn.apps.googleusercontent.com", // 👈 webClientId 하나만
+    // redirectUri: "https://auth.expo.io/@aryu1217/Long-Live",
+    // scopes: ["profile", "email"],
   });
 
   useEffect(() => {
+    console.log("📦 Full response object:", response);
+
     if (response?.type === "success") {
-      console.log(
-        "🟢 로그인 성공! accessToken:",
-        response.authentication.accessToken
-      );
+      console.log("✅ accessToken:", response.authentication.accessToken);
       onSuccess(response.authentication.accessToken);
+    } else if (response?.type === "error") {
+      console.log("❌ OAuth error:", response.error);
+    } else if (response) {
+      console.log("⚠️ OAuth response received, but not success:", response);
     }
   }, [response]);
 
@@ -38,7 +46,6 @@ export default function GoogleLoginButton({ onSuccess }) {
     <TouchableOpacity
       style={styles.button}
       onPress={() => {
-        console.log("🟡 구글 로그인 버튼 눌림");
         promptAsync();
       }}
     >

@@ -28,6 +28,11 @@ export default function LoginScreen() {
       if (!response.ok) throw new Error("로그인 실패");
 
       const data = await response.json();
+
+      router.push({
+        pathname: "/my-page",
+        params: { accessToken },
+      });
       // await AsyncStorage.setItem("jwt", data.accessToken); // 필요 시 저장
       router.replace("/tabs"); // 로그인 후 탭 네비게이션으로 이동
     } catch (err) {
