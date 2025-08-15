@@ -7,8 +7,7 @@ export default function MarketPage() {
   return (
     <View style={styles.container}>
       <SearchBar />
-      <CategoryTabs />
-      {/* <DailyProductList /> */}
+      <DailyProductList />
     </View>
   );
 }

@@ -45,7 +45,6 @@ export default function CategoryTabs() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    marginTop: 10,
   },
 
   tab: {

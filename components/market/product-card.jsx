@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
 
       <TouchableOpacity style={styles.button}>
         <Feather name="shopping-cart" size={16} color="#fff" />
-        <Text style={styles.buttonText}> Add to Cart</Text>
+        <Text style={styles.buttonText}> 장바구니에 추가</Text>
       </TouchableOpacity>
     </View>
   );
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
+    fontSize: 13,
     fontWeight: "bold",
   },
 });

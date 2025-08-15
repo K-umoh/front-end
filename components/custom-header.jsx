@@ -8,7 +8,7 @@ export default function CustomHeader() {
       <Text style={styles.title}>오래살장</Text>
       <View style={styles.right}>
         <View style={styles.circle}>
-          <Text style={styles.circleText}>김</Text>
+          <Text style={styles.circleText}>류</Text>
         </View>
       </View>
     </View>
